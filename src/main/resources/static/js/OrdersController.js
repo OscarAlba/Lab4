@@ -40,9 +40,9 @@ function addOrder(){
 
 function removeOrderById(id){
 	axios.delete('/orders/'+id)
-		.then(function(){                        
-                        document.getElementById("tag"+id).remove();
-			document.getElementById("Order"+id).remove();
+		.then(function(){
+                        $("#tag"+id).remove();
+                        $("#Order"+id).remove();
 		})
 		.catch(function(error){
 			console.log(error);
@@ -65,7 +65,6 @@ function removeOrderById(id){
 				for(j in products){
                                         console.log(orders[i].orderAmountsMap[products[j]]);
                                         str="#Order"+i.toString();
-                  
 					$(str).append("<tbody> <tr> <td>"+products[j]+"</td> <td>"+orders[i].orderAmountsMap[products[j]]+"</td> </tr> </tbody>");
 				}
 			}						
