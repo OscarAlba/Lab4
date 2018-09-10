@@ -55,12 +55,18 @@ function removeOrderById(id){
 	axios.get('/orders')
 		.then(function(result){
 			orders = result.data;
+             
 			$("#change").empty();
-			for(i in orders){				
+			for(i in orders){
+                                products = Object.keys(orders[i].orderAmountsMap);
+                                console.log(products);
                                 $("#change").append("<p id='tag"+i+"'>Order "+i+ "</p>");                                
 				$("#change").append("<table id='Order"+i+"' class='table table-dark'> <thead> <tr> <th scope='col'>Product</th> <th scope='col'>Quantity</th> </tr> </thead>");
-				for(j in orders[i].orderAmountsMap){					
-					$("#change"+i).append("<tbody> <tr> <td>"+j+"</td> <td>"+orders[i].orderAmountsMap[j]+"</td> </tr> </tbody>");
+				for(j in products){
+                                        console.log(orders[i].orderAmountsMap[products[j]]);
+                                        str="#Order"+i.toString();
+                  
+					$(str).append("<tbody> <tr> <td>"+products[j]+"</td> <td>"+orders[i].orderAmountsMap[products[j]]+"</td> </tr> </tbody>");
 				}
 			}						
 		})
